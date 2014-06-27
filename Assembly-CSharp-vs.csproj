@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_GENERICS;ENABLE_SUBSTANCE;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_3_4;UNITY_4_3;UNITY_64;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_4_5_1;UNITY_4_5;UNITY_64;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -46,20 +46,27 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\CrumbleController.cs" />
-     <Compile Include="Assets\DestroyableController.cs" />
-     <Compile Include="Assets\MobileObjectController.cs" />
-     <Compile Include="Assets\Parent_Cube.cs" />
+     <Compile Include="Assets\CNJoystick\Scripts\CN2DController.cs" />
+     <Compile Include="Assets\CNJoystick\Scripts\CNCameraFollow.cs" />
+     <Compile Include="Assets\CNJoystick\Scripts\CNCameraRelativeSetup.cs" />
+     <Compile Include="Assets\CNJoystick\Scripts\CNJoystick.cs" />
+     <Compile Include="Assets\CNJoystick\Scripts\SkeletonAnimator.cs" />
      <Compile Include="Assets\Scripts\BulletContainer.cs" />
      <Compile Include="Assets\Scripts\BulletMovement.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
+     <Compile Include="Assets\Scripts\CameraTracking.cs" />
      <Compile Include="Assets\Scripts\CardController.cs" />
+     <Compile Include="Assets\Scripts\ChestController.cs" />
      <Compile Include="Assets\Scripts\Cloud_L_Movement.cs" />
+     <Compile Include="Assets\Scripts\CrumbleController.cs" />
+     <Compile Include="Assets\Scripts\DashPadController.cs" />
      <Compile Include="Assets\Scripts\DestroyByBoundary.cs" />
      <Compile Include="Assets\Scripts\DestroyByTime.cs" />
      <Compile Include="Assets\Scripts\DestroyByTouch.cs" />
+     <Compile Include="Assets\Scripts\DestroyableController.cs" />
      <Compile Include="Assets\Scripts\DisableCharController.cs" />
      <Compile Include="Assets\Scripts\DoorController.cs" />
+     <Compile Include="Assets\Scripts\DragonShoutController.cs" />
      <Compile Include="Assets\Scripts\ExitController.cs" />
      <Compile Include="Assets\Scripts\FireBallController.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
@@ -67,15 +74,21 @@
      <Compile Include="Assets\Scripts\GoalTrigger.cs" />
      <Compile Include="Assets\Scripts\HazzardController.cs" />
      <Compile Include="Assets\Scripts\HeroAnimationController.cs" />
+     <Compile Include="Assets\Scripts\LaunchPadController.cs" />
      <Compile Include="Assets\Scripts\MainMenuExit.cs" />
      <Compile Include="Assets\Scripts\MainMenuIntroduction.cs" />
      <Compile Include="Assets\Scripts\MainMenuLevelSelection.cs" />
      <Compile Include="Assets\Scripts\MainMenuStart.cs" />
      <Compile Include="Assets\Scripts\MainMenuSubLevelList.cs" />
      <Compile Include="Assets\Scripts\MainMenuSubListBack.cs" />
+     <Compile Include="Assets\Scripts\MinionController.cs" />
+     <Compile Include="Assets\Scripts\MinionSpawnController.cs" />
+     <Compile Include="Assets\Scripts\MobileObjectController.cs" />
      <Compile Include="Assets\Scripts\MojangController.cs" />
      <Compile Include="Assets\Scripts\NextLevelController.cs" />
+     <Compile Include="Assets\Scripts\Parent_Cube.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\PlayerController_Android.cs" />
      <Compile Include="Assets\Scripts\PowerController.cs" />
      <Compile Include="Assets\Scripts\ProjectileController.cs" />
      <Compile Include="Assets\Scripts\PuzzleController.cs" />
@@ -87,10 +100,12 @@
      <Compile Include="Assets\Scripts\ShooterController.cs" />
      <Compile Include="Assets\Scripts\ShotController.cs" />
      <Compile Include="Assets\Scripts\ShotingGameController.cs" />
+     <Compile Include="Assets\Scripts\ShoutController.cs" />
      <Compile Include="Assets\Scripts\SurfaceController.cs" />
+     <Compile Include="Assets\Scripts\TrapController.cs" />
+     <Compile Include="Assets\Scripts\WallShadingController.cs" />
      <Compile Include="Assets\Scripts\WeightTriggerController.cs" />
-     <Compile Include="Assets\ShoutController.cs" />
-     <Compile Include="Assets\TrapController.cs" />
+     <Compile Include="Assets\TestGameController.cs" />
      <Compile Include="Assets\service_plugin\SenseixStyle.cs" />
      <Compile Include="Assets\service_plugin\container.cs" />
      <Compile Include="Assets\service_plugin\heavyUser.cs" />
@@ -108,10 +123,11 @@
      <Compile Include="Assets\service_plugin\trigger.cs" />
      <Compile Include="Assets\service_plugin\user.cs" />
      <None Include="Assets\Sculptures\readme.txt" />
+     <None Include="Assets\CNJoystick\OnScreenControls\Initial Pack\Sprites\flatDark\flatDark.xml" />
      <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
      <None Include="Assets\HeroBoy\Documents\Readme.txt" />
  <Reference Include="Assembly-UnityScript-firstpass">
- <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
+ <HintPath>C:/Users/Alex/Dropbox/Private_code/_Internship/Puzzle_AVG/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

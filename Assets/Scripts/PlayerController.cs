@@ -45,7 +45,9 @@ public class PlayerController : MonoBehaviour {
 	
 	private bool skill_circle;
 	private int right_click_time;
-	private Vector2[] skills_pos = new Vector2[]{new Vector2(0.0f,-80.0f), new Vector2(0.0f,80.0f), new Vector2(80.0f,0.0f), new Vector2(-80.0f,0.0f)};
+	//private Vector2[] skills_pos = new Vector2[]{new Vector2(0.0f,-80.0f), new Vector2(0.0f,80.0f), new Vector2(80.0f,0.0f), new Vector2(-80.0f,0.0f)};
+	private Vector2[] skills_pos = new Vector2[]{new Vector2(100.0f,500.0f), new Vector2(200.0f,500.0f), new Vector2(300.0f,500.0f), new Vector2(400.0f,500.0f)};
+	
 	private string[] skills = new string[4]{"Fireball","Water","Pull","Push"};
 	
 	public Transform shot_spot;
@@ -53,6 +55,7 @@ public class PlayerController : MonoBehaviour {
 	public float fire_pow = 5.0f;
 	public float skill_force = 400.0f;
 	
+	public GameObject DragonShout;
 	
 	private int skill_ready;
 	
@@ -151,7 +154,7 @@ public class PlayerController : MonoBehaviour {
 	
 	void TakeInput(){
 		
-		if (Input.GetKey (KeyCode.LeftArrow)&& !Input.GetKey(KeyCode.LeftShift)&&!jumping) {
+		if (Input.GetKey (KeyCode.LeftArrow)&& !Input.GetKey(KeyCode.LeftShift)&&jumping) {
 			
 			//if(Mathf.Sqrt( Mathf.Pow (transform.rotation.eulerAngles.y - (90),2)) <= 1){
 				face_dir.eulerAngles = new Vector3(0.0f,-90.0f,0.0f);
@@ -166,7 +169,7 @@ public class PlayerController : MonoBehaviour {
 			currentSpeed = -walkSpeed;
 		}
 		
-		else if (Input.GetKey (KeyCode.RightArrow)&& !Input.GetKey(KeyCode.LeftShift)&&!jumping) {
+		else if (Input.GetKey (KeyCode.RightArrow)&& !Input.GetKey(KeyCode.LeftShift)&&jumping) {
 			
 			//Debug.Log("Get right arrow key!!!!!!!!!");
 			
@@ -183,7 +186,7 @@ public class PlayerController : MonoBehaviour {
 			currentSpeed = walkSpeed;
 		}
 		
-		else if(Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.LeftShift)&&!jumping){
+		if(Input.GetKey(KeyCode.LeftArrow) &&!jumping){
 			face_dir.eulerAngles = new Vector3(0.0f,-90.0f,0.0f);
 			//transform.Rotate(0.0f,180.0f,0.0f);
 			transform.rotation = face_dir;
@@ -196,7 +199,7 @@ public class PlayerController : MonoBehaviour {
 			currentSpeed = -runningSpeed;
 		}
 		
-		else if(Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.LeftShift)&&!jumping){
+		else if(Input.GetKey(KeyCode.RightArrow) &&!jumping){
 			face_dir.eulerAngles = new Vector3(0.0f,90.0f,0.0f);
 			//transform.Rotate(0.0f,180.0f,0.0f);
 			transform.rotation = face_dir;
@@ -208,23 +211,23 @@ public class PlayerController : MonoBehaviour {
 			transform.position = new Vector3(transform.position.x + runningSpeed*Time.deltaTime, transform.position.y, transform.position.z);
 			currentSpeed = runningSpeed;
 		}
-		
+		/*
 		else if(Input.GetKey(KeyCode.Space)&&!jumping && Time.time - startJumping >= 1.5f){
 			
 			Debug.Log("Jump!!!!");
 			//rigidbody.AddForce(0.0f,10.0f,0.0f);
 			startJumping = Time.time;
-			jumping = true;
-		}
-		else if(jumping)
+			//jumping = true;
+		}*/
+		else if(Input.GetKey(KeyCode.Space)&&!jumping)
 		{
 			
 			/*
 				_animation[jumpAnimation.name].speed = Mathf.Clamp(rigidbody.velocity.magnitude, 0.0f, runMaxAnimationSpeed);;
 				_animation.CrossFade(jumpAnimation.name);
 				*/
-			rigidbody.AddForce(new Vector3(currentSpeed*rigidbody.mass,5.0f,0.0f),ForceMode.Impulse);
-			jumping = false;
+			rigidbody.AddForce(new Vector3(currentSpeed*rigidbody.mass,force,0.0f),ForceMode.Impulse);
+			//jumping = false;
 		}else if(Input.GetKey(KeyCode.UpArrow) && climbing){
 		
 			transform.position = transform.position + transform.up * Time.deltaTime;
@@ -237,7 +240,7 @@ public class PlayerController : MonoBehaviour {
 		}
 		
 		else{
-			jumping = false;
+			//jumping = false;
 			_animation.CrossFade (idleAnimation.name);
 			currentSpeed = 0.0f;
 			transform.rotation = current_dir;
@@ -254,6 +257,15 @@ public class PlayerController : MonoBehaviour {
 		
 		if(Input.GetMouseButtonDown(2)){
 			TriggerSkills(skill_ready);
+		}
+		
+		if(Input.GetKeyDown(KeyCode.A)){
+			Quaternion forward = new Quaternion();
+			forward.eulerAngles = shot_spot.transform.forward;
+			
+			print (forward.eulerAngles);
+			
+			Instantiate(DragonShout,shot_spot.position,forward);
 		}
 	}
 	
@@ -333,7 +345,7 @@ public class PlayerController : MonoBehaviour {
 			
 			
 			if(sight.Length > 0)
-				sb.Append(sight[0].collider.tag);
+				sb.Append(sight[sight.Length - 1].collider.tag);
 			
 			Tag_sight = sb.ToString();
 			print("target in sight");
@@ -378,7 +390,7 @@ public class PlayerController : MonoBehaviour {
 			if(spirit_point > 0){
 					mobileObjectController.rigidbody.AddForce(direction * skill_force,ForceMode.Impulse);
 			
-				LoseSP(1);
+				LoseSP(4);
 				}
 			}
 		}
@@ -409,10 +421,11 @@ public class PlayerController : MonoBehaviour {
 	void OnGUI(){
 	
 		Vector3 circle_center = cameraController.WorldToScreenPoint(transform.position) + new Vector3(-30.0f,-10.0f,0.0f);
-		if(skill_circle){
+		//if(skill_circle){
+		if(true){
 			for(int i = 0; i < 4; i++)
-				if(GUI.Button(new Rect(circle_center.x + skills_pos[i].x,circle_center.y + skills_pos[i].y,80.0f,20.0f),skills[i])){
-					
+				//if(GUI.Button(new Rect(circle_center.x + skills_pos[i].x,circle_center.y + skills_pos[i].y,80.0f,20.0f),skills[i])){
+				if(GUI.Button(new Rect(skills_pos[i].x,skills_pos[i].y,80.0f,20.0f),skills[i])){	
 					if(skill_status[i] == true)
 						skill_ready = i;
 					
@@ -424,5 +437,25 @@ public class PlayerController : MonoBehaviour {
 				}
 		}
 	
+	}
+	
+	void OnCollisionEnter(Collision collision){
+		
+		if(collision.collider.tag == "Coin"){
+			gameController.AddCoin();
+			Destroy(collision.gameObject);
+		}
+		
+		if(collision.collider.tag == "Ground"){
+			jumping = false;
+		}
+	
+	}
+	
+	void OnCollisionExit(Collision collision){
+	
+		if(collision.collider.tag == "Ground"){
+			jumping = true;
+		}
 	}
 }

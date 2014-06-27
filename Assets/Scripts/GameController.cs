@@ -7,9 +7,13 @@ public class GameController : MonoBehaviour {
 	
 	public GameObject menu;
 	public GameObject gameover;
-	
+
 	private PlayerController playerController;
-	private Texture2D health_bar_tex, spirit_bar_tex, empty_bar_tex;
+	private CameraTracking cameraController;
+	
+	private Texture2D health_bar_tex, spirit_bar_tex, empty_bar_tex, coin_tex;
+	
+	private int coin_num;
 	
 	void Awake(){
 		GameObject playerControllerObject = GameObject.FindGameObjectWithTag("Player");
@@ -20,10 +24,22 @@ public class GameController : MonoBehaviour {
 				Debug.LogError("No player controller object is found");
 		}
 		
+		GameObject cameraControllerObject = GameObject.FindGameObjectWithTag("MainCamera");
+		if(cameraControllerObject == null)
+			Debug.LogError("No camera controller object is found");
+		else{
+			cameraController = cameraControllerObject.GetComponent<CameraTracking>();
+			if(cameraController == null)
+				Debug.LogError("No camera controller is found");
+		}
+		
 		// Load texture from resources folder
 		health_bar_tex = Resources.Load("health_bar") as Texture2D;
 		spirit_bar_tex = Resources.Load("spirit_bar") as Texture2D;
 		empty_bar_tex = Resources.Load("empty_bar") as Texture2D;
+		coin_tex = Resources.Load("gold_coin_small") as Texture2D;
+		
+		Time.timeScale = 1.0f;
 // Commented content below is the service part
 /*	
 		senseix.initSenseix("6d483ee4ac7c4aafff9404f8cac7d567bd54d42a608b36b013d681ff2dd47dae");
@@ -50,6 +66,8 @@ public class GameController : MonoBehaviour {
 		Debug.Log (question);
 	*/	
 		//senseix.p
+		
+		coin_num = 0;
 	}
 
 	
@@ -76,6 +94,11 @@ public class GameController : MonoBehaviour {
 	}
 	
 	void OnGUI(){
+		
+		string coin_str = coin_num.ToString();
+		GUI.Label(new Rect(500.0f,10.0f,30.0f,30.0f),coin_str);
+		GUI.Label(new Rect(460.0f,10.0f,coin_tex.width,coin_tex.height),coin_tex);
+	// Health bar and Spirit bar
 		int player_hp = playerController.GetHealth();
 		int player_sp = playerController.GetSpirit();
 		
@@ -104,11 +127,18 @@ public class GameController : MonoBehaviour {
 		//GUI.Label(new Rect(10.0f,50.0f,spirit_bar_tex.width * sp_ratio,spirit_bar_tex.height), spirit_bar_tex);
 	}
 	
+	public void AddCoin(){	
+		coin_num++;
+	}
+	
+	public void AddTreasures(int n){
+		
+		coin_num += n;
+	}
+	
 	public void GameOver(){
 		Time.timeScale = 0.0f;
 		gameover.SetActive(true);
-		gameover.transform.position = new Vector3(playerController.transform.position.x, playerController.transform.position.y, gameover.transform.position.z);
+		gameover.transform.position = new Vector3(cameraController.transform.position.x, playerController.transform.position.y, gameover.transform.position.z);
 	}
-	
-
 }

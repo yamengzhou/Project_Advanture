@@ -5,6 +5,8 @@ Project("{981BF603-1A27-92AA-CB45-B8406D2F1D0C}") = "Puzzle_AVG", "Assembly-CSha
 EndProject
 Project("{981BF603-1A27-92AA-CB45-B8406D2F1D0C}") = "Puzzle_AVG", "Assembly-CSharp.csproj", "{8A5E9F21-C19A-01E4-046C-3257CD620C27}"
 EndProject
+Project("{981BF603-1A27-92AA-CB45-B8406D2F1D0C}") = "Puzzle_AVG", "Assembly-CSharp-Editor.csproj", "{FC50D062-28D4-36FA-9A77-4E82EE00741F}"
+EndProject
 Project("{981BF603-1A27-92AA-CB45-B8406D2F1D0C}") = "Puzzle_AVG", "Assembly-UnityScript-firstpass.unityproj", "{B3275B40-042A-C277-D531-7FA00533EB9A}"
 EndProject
 Global
@@ -21,6 +23,10 @@ Global
 		{8A5E9F21-C19A-01E4-046C-3257CD620C27}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A5E9F21-C19A-01E4-046C-3257CD620C27}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A5E9F21-C19A-01E4-046C-3257CD620C27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC50D062-28D4-36FA-9A77-4E82EE00741F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC50D062-28D4-36FA-9A77-4E82EE00741F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC50D062-28D4-36FA-9A77-4E82EE00741F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC50D062-28D4-36FA-9A77-4E82EE00741F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B3275B40-042A-C277-D531-7FA00533EB9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B3275B40-042A-C277-D531-7FA00533EB9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3275B40-042A-C277-D531-7FA00533EB9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -29,7 +35,7 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																																																																																																																																									GlobalSection(MonoDevelopProperties) = preSolution
+																																																																																																																																																																																GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1

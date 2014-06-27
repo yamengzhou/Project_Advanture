@@ -5,6 +5,7 @@ public class PowerController : MonoBehaviour {
 
 	private PlayerController playerController;
 	private Camera cameraController;
+	private GameController gameController;
 	
 	private bool pointed;
 	private bool triggered;
@@ -19,6 +20,8 @@ public class PowerController : MonoBehaviour {
 	private System.Text.StringBuilder sb = new System.Text.StringBuilder();
 	
 	public int perks = 0;
+	
+	private bool opened;
 	
 	void Awake(){
 		GameObject playerControllerObject = GameObject.FindGameObjectWithTag("Player");
@@ -38,8 +41,18 @@ public class PowerController : MonoBehaviour {
 				Debug.LogError("No camera controller is found");
 		
 		}
+		
+		GameObject gameControllerObject = GameObject.FindGameObjectWithTag("GameController");
+		if(gameControllerObject)
+		{
+			gameController = gameControllerObject.GetComponent<GameController>();
+			if(gameController == null)
+				Debug.LogError("No game controller object is found");
+		}
+		
 		pointed = false;
 		triggered = false;
+		opened = false;
 	}
 
 	// Use this for initialization
@@ -69,6 +82,7 @@ public class PowerController : MonoBehaviour {
 	
 	void OnMouseEnter(){
 		renderer.material.color = Color.red;
+		print("Pointed!!!");
 		pointed = true;
 	}
 	
@@ -157,7 +171,7 @@ public class PowerController : MonoBehaviour {
 			
 			
 				if(check_answer){
-					print("Get Fire!!!!");
+					//print("Get Fire!!!!");
 				
 				// Change the function of shrine to help player character	
 				//********************************************************************/
@@ -167,7 +181,10 @@ public class PowerController : MonoBehaviour {
 						playerController.RestoreHP();
 					else if(perks == 77)
 						playerController.RestoreSP();
-						
+					else if(perks >= 99 && !opened){
+						gameController.AddTreasures(perks);
+						opened = true;
+					}
 					triggered = false;
 				
 				}else{
@@ -248,22 +265,7 @@ public class PowerController : MonoBehaviour {
 		input[order[3]] = rand_1;
 		input[order[4]] = rand_2;
 		input[order[5]] = rand_symbol;
-		
-		/*
-		for(int i =0; i < 10; i++){
-		
-			int m = Random.Range(0,5);
-			int n = Random.Range(0,5);
-			
-			if(m == n){
-				i--;
-				continue;
-			}	
-			
-			string.
-		}
-		
-		*/
+
 	}
 	
 	void GetEquation(){
@@ -333,4 +335,7 @@ public class PowerController : MonoBehaviour {
 		
 	}
 	
+	public bool GetOpened(){
+		return opened;
+	}
 }
