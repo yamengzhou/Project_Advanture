@@ -49,15 +49,7 @@ public class PlayerController : MonoBehaviour {
 	private bool skill_circle;
 	private int right_click_time;
 	//private Vector2[] skills_pos = new Vector2[]{new Vector2(0.0f,-80.0f), new Vector2(0.0f,80.0f), new Vector2(80.0f,0.0f), new Vector2(-80.0f,0.0f)};
-<<<<<<< HEAD
 	private Vector2[] skills_pos = new Vector2[]{new Vector2(700.0f,700.0f), new Vector2(850.0f,700.0f), new Vector2(1000.0f,700.0f), new Vector2(1150.0f,700.0f)};
-=======
-<<<<<<< HEAD
-	private Vector2[] skills_pos = new Vector2[]{new Vector2(700.0f,700.0f), new Vector2(850.0f,700.0f), new Vector2(1000.0f,700.0f), new Vector2(1150.0f,700.0f)};
-=======
-	private Vector2[] skills_pos = new Vector2[]{new Vector2(100.0f,500.0f), new Vector2(200.0f,500.0f), new Vector2(300.0f,500.0f), new Vector2(400.0f,500.0f)};
->>>>>>> dac4a523c9afbd0e8eafa05990a587f49290ff6a
->>>>>>> c1393aae152be81d0421ed101249f3c2210c4e77
 	
 	private string[] skills = new string[4]{"Fireball","Water","Pull","Push"};
 	
@@ -186,17 +178,8 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	void TakeInput(){
-<<<<<<< HEAD
 	/*
 #if UNITY_EDITOR_WIN	
-=======
-<<<<<<< HEAD
-	/*
-#if UNITY_EDITOR_WIN	
-=======
-		
->>>>>>> dac4a523c9afbd0e8eafa05990a587f49290ff6a
->>>>>>> c1393aae152be81d0421ed101249f3c2210c4e77
 		if (Input.GetKey (KeyCode.LeftArrow)&& !Input.GetKey(KeyCode.LeftShift)&&jumping) {
 			
 			//if(Mathf.Sqrt( Mathf.Pow (transform.rotation.eulerAngles.y - (90),2)) <= 1){
@@ -254,53 +237,24 @@ public class PlayerController : MonoBehaviour {
 			transform.position = new Vector3(transform.position.x + runningSpeed*Time.deltaTime, transform.position.y, transform.position.z);
 			currentSpeed = runningSpeed;
 		}
-<<<<<<< HEAD
 		
 		else if(Input.GetKey(KeyCode.Space)&&!jumping && Time.time - startJumping >= 1.0f){
-<<<<<<< HEAD
-=======
-=======
-		/*
-		else if(Input.GetKey(KeyCode.Space)&&!jumping && Time.time - startJumping >= 1.5f){
->>>>>>> dac4a523c9afbd0e8eafa05990a587f49290ff6a
->>>>>>> c1393aae152be81d0421ed101249f3c2210c4e77
 			
 			Debug.Log("Jump!!!!");
 			//rigidbody.AddForce(0.0f,10.0f,0.0f);
 			rigidbody.AddForce(new Vector3(currentSpeed*rigidbody.mass,force,0.0f),ForceMode.Impulse);
 			startJumping = Time.time;
-<<<<<<< HEAD
 			jumping = true;
 		//}
 		//else if((Input.GetKeyDown(KeyCode.Space)||(Input.GetKeyDown(KeyCode.Space)&&(Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow))))&&!jumping)
-<<<<<<< HEAD
-=======
-=======
-			//jumping = true;
-		}*/
-		else if(Input.GetKey(KeyCode.Space)&&!jumping)
->>>>>>> dac4a523c9afbd0e8eafa05990a587f49290ff6a
->>>>>>> c1393aae152be81d0421ed101249f3c2210c4e77
 		{
 			
 			
 				_animation[jumpAnimation.name].speed = Mathf.Clamp(rigidbody.velocity.magnitude, 0.0f, runMaxAnimationSpeed);;
 				_animation.CrossFade(jumpAnimation.name);
-<<<<<<< HEAD
 				
 			//rigidbody.AddForce(new Vector3(currentSpeed*rigidbody.mass,force,0.0f),ForceMode.Impulse);
 			//jumping = true;
-=======
-<<<<<<< HEAD
-				
-			//rigidbody.AddForce(new Vector3(currentSpeed*rigidbody.mass,force,0.0f),ForceMode.Impulse);
-			//jumping = true;
-=======
-				*/
-			rigidbody.AddForce(new Vector3(currentSpeed*rigidbody.mass,force,0.0f),ForceMode.Impulse);
-			//jumping = false;
->>>>>>> dac4a523c9afbd0e8eafa05990a587f49290ff6a
->>>>>>> c1393aae152be81d0421ed101249f3c2210c4e77
 		}else if(Input.GetKey(KeyCode.UpArrow) && climbing){
 		
 			transform.position = transform.position + transform.up * Time.deltaTime;
@@ -313,15 +267,8 @@ public class PlayerController : MonoBehaviour {
 		}
 		
 		else{
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> c1393aae152be81d0421ed101249f3c2210c4e77
 			//if(Time.time - startJumping >= 1.5f && jumping)
 			jumping = false;
-=======
-			//jumping = false;
->>>>>>> dac4a523c9afbd0e8eafa05990a587f49290ff6a
 			_animation.CrossFade (idleAnimation.name);
 			currentSpeed = 0.0f;
 			transform.rotation = current_dir;
@@ -348,10 +295,6 @@ public class PlayerController : MonoBehaviour {
 			
 			Instantiate(DragonShout,shot_spot.position,forward);
 		}
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> c1393aae152be81d0421ed101249f3c2210c4e77
 #endif
 */
 #if UNITY_ANDROID
@@ -475,11 +418,6 @@ public class PlayerController : MonoBehaviour {
 		}
 #endif
 
-<<<<<<< HEAD
-=======
-=======
->>>>>>> dac4a523c9afbd0e8eafa05990a587f49290ff6a
->>>>>>> c1393aae152be81d0421ed101249f3c2210c4e77
 	}
 	
 	void OnTriggerStay(){
@@ -552,16 +490,7 @@ public class PlayerController : MonoBehaviour {
 			touch_pos.z = -Camera.main.transform.position.z;
 			Ray ray = Camera.main.ScreenPointToRay(touch_pos);
 			
-<<<<<<< HEAD
 			RaycastHit[] hits = Physics.RaycastAll(ray);
-=======
-<<<<<<< HEAD
-			RaycastHit[] hits = Physics.RaycastAll(ray);
-=======
-			if(sight.Length > 0)
-				sb.Append(sight[sight.Length - 1].collider.tag);
->>>>>>> dac4a523c9afbd0e8eafa05990a587f49290ff6a
->>>>>>> c1393aae152be81d0421ed101249f3c2210c4e77
 			
 			if(hits.Length > 0){
 				print (hits[0].collider.name);
@@ -682,23 +611,10 @@ public class PlayerController : MonoBehaviour {
 	
 		Vector3 circle_center = cameraController.WorldToScreenPoint(transform.position) + new Vector3(-30.0f,-10.0f,0.0f);
 		//if(skill_circle){
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> c1393aae152be81d0421ed101249f3c2210c4e77
 		//if(true){
 			for(int i = 0; i < 4; i++)
 				//if(GUI.Button(new Rect(circle_center.x + skills_pos[i].x,circle_center.y + skills_pos[i].y,80.0f,20.0f),skills[i])){
 				if(GUI.Button(new Rect(skills_pos[i].x,skills_pos[i].y,150.0f,150.0f),skills[i])){	
-<<<<<<< HEAD
-=======
-=======
-		if(true){
-			for(int i = 0; i < 4; i++)
-				//if(GUI.Button(new Rect(circle_center.x + skills_pos[i].x,circle_center.y + skills_pos[i].y,80.0f,20.0f),skills[i])){
-				if(GUI.Button(new Rect(skills_pos[i].x,skills_pos[i].y,80.0f,20.0f),skills[i])){	
->>>>>>> dac4a523c9afbd0e8eafa05990a587f49290ff6a
->>>>>>> c1393aae152be81d0421ed101249f3c2210c4e77
 					if(skill_status[i] == true)
 						skill_ready = i;
 					
@@ -731,28 +647,5 @@ public class PlayerController : MonoBehaviour {
 			//jumping = true;
 			//startJumping = Time.time;
 		}
-<<<<<<< HEAD
-=======
-	}
-	
-	void OnCollisionEnter(Collision collision){
-		
-		if(collision.collider.tag == "Coin"){
-			gameController.AddCoin();
-			Destroy(collision.gameObject);
-		}
-		
-		if(collision.collider.tag == "Ground"){
-			jumping = false;
-		}
-	
-	}
-	
-	void OnCollisionExit(Collision collision){
-	
-		if(collision.collider.tag == "Ground"){
-			jumping = true;
-		}
->>>>>>> c1393aae152be81d0421ed101249f3c2210c4e77
 	}
 }
