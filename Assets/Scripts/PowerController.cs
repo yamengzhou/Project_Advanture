@@ -95,7 +95,10 @@ public class PowerController : MonoBehaviour {
 	
 	void OnMouseOver(){
 		renderer.material.color = Color.red;
+<<<<<<< HEAD
 		
+=======
+>>>>>>> dac4a523c9afbd0e8eafa05990a587f49290ff6a
 		print("Pointed!!!");
 		pointed = true;
 	}

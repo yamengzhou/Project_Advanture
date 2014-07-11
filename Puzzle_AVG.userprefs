@@ -1,9 +1,18 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+<<<<<<< HEAD
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PlayerController.cs">
     <Files>
       <File FileName="Assets\Scripts\PlayerController.cs" Line="584" Column="3" />
       <File FileName="Assets\Scripts\MobileObjectController.cs" Line="26" Column="31" />
+=======
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\Chess\Assets\Scripts\GameController.cs">
+    <Files>
+      <File FileName="..\Chess\Assets\Scripts\GameController.cs" Line="37" Column="42" />
+      <File FileName="..\Chess\Assets\Scripts\PlatesController.cs" Line="1" Column="1" />
+      <File FileName="..\Chess\Assets\Scripts\FigureController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PlayerController.cs" Line="172" Column="89" />
+>>>>>>> dac4a523c9afbd0e8eafa05990a587f49290ff6a
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

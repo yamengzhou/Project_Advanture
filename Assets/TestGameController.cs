@@ -25,7 +25,11 @@ public class TestGameController : MonoBehaviour {
 #endif
 
 #if UNITY_ANDROID	
+<<<<<<< HEAD
 //		Input.multiTouchEnabled(true);
+=======
+		Input.multiTouchEnabled(true);
+>>>>>>> dac4a523c9afbd0e8eafa05990a587f49290ff6a
 		debugStr = Input.GetTouch(0).position.ToString();
 #endif
 	
