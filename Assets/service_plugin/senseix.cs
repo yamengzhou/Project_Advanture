@@ -44,6 +44,7 @@ using System.Text;
 
 
 		//API URLS
+	/*	
 		public const string MESSAGETYPE_USER_ADD_URL = "http://senseix.herokuapp.com/v1/coaches";
 		public const string MESSAGETYPE_COACH_SIGN_UP_URL = "http://senseix.herokuapp.com/v1/coaches/";
 		public const string MESSAGETYPE_COACH_SIGN_IN_URL = "http://senseix.herokuapp.com/v1/coaches/sign_in";
@@ -64,7 +65,31 @@ using System.Text;
 		public const string MESSAGETYPE_FRIEND_PULL_URL = "http://senseix.herokuapp.com/v1/players/friends";
 		public const string MESSAGETYPE_FRIEND_CREATE_URL = "http://senseix.herokuapp.com/v1/players/friends/create";
 		public const string MESSAGETYPE_FRIEND_DELETE_URL = "http://senseix.herokuapp.com/v1/players/friends/delete";
-			
+	*/	
+	
+	
+	public const string MESSAGETYPE_USER_ADD_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/coaches";
+	public const string MESSAGETYPE_COACH_SIGN_UP_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/coaches/";
+	public const string MESSAGETYPE_COACH_SIGN_IN_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/coaches/sign_in";
+	public const string MESSAGETYPE_COACH_SIGN_OUT_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/coaches/sign_out";	//info of profile
+	public const string MESSAGETYPE_DEVEL_SIGN_IN_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/developers/sign_in";
+	public const string MESSAGETYPE_DEVEL_SIGN_OUT_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/developers/sign_out";
+	
+	public const string MESSAGETYPE_PLAYER_CREATE_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/players/create";
+
+	public const string MESSAGETYPE_PLAYER_INDEX_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/players/index";
+	
+		public const string MESSAGETYPE_LEADERBOARD_PULL_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/applications/leaderboard/show";
+	
+	public const string MESSAGETYPE_PROBLEM_PULL_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/problems";
+	public const string MESSAGETYPE_PROBLEM_PUSH_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/problems/update";
+	
+	public const string MESSAGETYPE_MECHANIC_POST_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/applications/mechanic";
+	public const string MESSAGETYPE_MECHANIC_GET_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/applications/mechanic";
+	public const string MESSAGETYPE_FRIEND_PULL_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/players/friends";
+	public const string MESSAGETYPE_FRIEND_CREATE_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/players/friends/create";
+	public const string MESSAGETYPE_FRIEND_DELETE_URL = "http://senseix-staging-1958447000.us-east-1.elb.amazonaws.com/v1/players/friends/delete";
+	
 	}
 	public class senseix: MonoBehaviour
 	{

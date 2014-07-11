@@ -5,12 +5,13 @@ public class PowerController : MonoBehaviour {
 
 	private PlayerController playerController;
 	private Camera cameraController;
+	private GameController gameController;
 	
 	private bool pointed;
 	private bool triggered;
 	
 	private Vector3 mouse_pos;
-	private Vector2[] puzzles_pos = new[]{new Vector2(-20,-80), new Vector2(-40,-80), new Vector2(-60,-80), new Vector2(-20,-60), new Vector2(-40,-60), new Vector2(-60,-60)};
+	private Vector2[] puzzles_pos = new[]{new Vector2(0,-200), new Vector2(-100,-200), new Vector2(-200,-200), new Vector2(0,-100), new Vector2(-100,-100), new Vector2(-200,-100)};
 	
 	private string[] input = new string[]{"3","+","2","1","-","4"};
 	private string ans = "7";
@@ -19,6 +20,8 @@ public class PowerController : MonoBehaviour {
 	private System.Text.StringBuilder sb = new System.Text.StringBuilder();
 	
 	public int perks = 0;
+	
+	private bool opened;
 	
 	void Awake(){
 		GameObject playerControllerObject = GameObject.FindGameObjectWithTag("Player");
@@ -38,8 +41,18 @@ public class PowerController : MonoBehaviour {
 				Debug.LogError("No camera controller is found");
 		
 		}
+		
+		GameObject gameControllerObject = GameObject.FindGameObjectWithTag("GameController");
+		if(gameControllerObject)
+		{
+			gameController = gameControllerObject.GetComponent<GameController>();
+			if(gameController == null)
+				Debug.LogError("No game controller object is found");
+		}
+		
 		pointed = false;
 		triggered = false;
+		opened = false;
 	}
 
 	// Use this for initialization
@@ -57,7 +70,8 @@ public class PowerController : MonoBehaviour {
 		mouse_pos = cameraController.WorldToScreenPoint(transform.position);
 		
 		float dist = Vector3.Distance(playerController.transform.position, transform.position);
-		
+/*
+#if UNITY_EDITOR_WIN
 		if(Input.GetMouseButtonDown(0) && dist < 2.0f && pointed){
 			GetEquation();
 			triggered = true;
@@ -65,10 +79,24 @@ public class PowerController : MonoBehaviour {
 		{
 			triggered = false;
 		}
+		
+#endif
+*/
+#if UNITY_ANDROID
+		if(dist < 2.0f && pointed && !triggered){
+			GetEquation();
+			triggered = true;
+		}else if(dist > 3.0f)
+		{
+			triggered = false;
+		}
+#endif
 	}
 	
-	void OnMouseEnter(){
+	void OnMouseOver(){
 		renderer.material.color = Color.red;
+		
+		print("Pointed!!!");
 		pointed = true;
 	}
 	
@@ -98,6 +126,10 @@ public class PowerController : MonoBehaviour {
 	
  	bool CheckAnswer(string num_1, string symbol, string num_2){
 	
+		int temp = 0;
+		//if(!int.TryParse(num_1,out temp) || !int.TryParse(symbol,out temp)|| !int.TryParse(num_2,out temp))
+		//	return false;
+		
 		int a = int.Parse(num_1);
 		int b = int.Parse(num_2);
 		
@@ -128,13 +160,15 @@ public class PowerController : MonoBehaviour {
 	}
 	
 	void OnGUI(){
+	
+		GUI.skin.label.fontSize = 40;
 		if(triggered){
 			
 			//print(mouse_pos);
 			GUI.Label(new Rect(mouse_pos.x - 20.0f, mouse_pos.y - 100.0f, 80.0f,20.0f),"Question");
 			
 			for(int i = 0; i < 6; i++)
-				if(GUI.Button(new Rect(mouse_pos.x + puzzles_pos[i].x, mouse_pos.y + puzzles_pos[i].y, 20.0f,20.0f), input[i])){
+				if(GUI.Button(new Rect(mouse_pos.x + puzzles_pos[i].x - 200.0f, mouse_pos.y + puzzles_pos[i].y, 100.0f,100.0f), input[i])){
 					sb.Append(input[i].ToString());
 				}
 			print(sb.ToString());
@@ -146,18 +180,18 @@ public class PowerController : MonoBehaviour {
 			if(player_pick.Length > 0)
 				player_pick.CopyTo(0,player_input,0,player_pick.Length);
 			
-			GUI.Label(new Rect(mouse_pos.x - 60.0f,mouse_pos.y - 40.0f,80.0f,20.0f),player_pick);
-			GUI.Label(new Rect(mouse_pos.x ,mouse_pos.y - 80.0f,80.0f,20.0f),"=" + ans);
+			GUI.Label(new Rect(mouse_pos.x - 400.0f,mouse_pos.y + 50.0f,300.0f,50.0f),player_pick);
+			GUI.Label(new Rect(mouse_pos.x - 200.0f,mouse_pos.y + 50.0f,80.0f,50.0f),"=" + ans);
 			
 			bool check_answer = false;
-			if(GUI.Button(new Rect(mouse_pos.x + 20.0f, mouse_pos.y - 40.0f, 80.0f, 20.0f),"Answer")){
+			if(GUI.Button(new Rect(mouse_pos.x - 300.0f, mouse_pos.y, 200.0f, 50.0f),"Answer")){
 				if(player_pick.Length == 3)
 					check_answer = CheckAnswer(player_input[0].ToString(),player_input[1].ToString(),player_input[2].ToString());
 				sb = new System.Text.StringBuilder();
 			
 			
 				if(check_answer){
-					print("Get Fire!!!!");
+					//print("Get Fire!!!!");
 				
 				// Change the function of shrine to help player character	
 				//********************************************************************/
@@ -167,9 +201,12 @@ public class PowerController : MonoBehaviour {
 						playerController.RestoreHP();
 					else if(perks == 77)
 						playerController.RestoreSP();
-						
+					else if(perks >= 99 && !opened){
+						gameController.AddTreasures(perks);
+						opened = true;
+					}
 					triggered = false;
-				
+					pointed = false;
 				}else{
 					//GUI.Label(new Rect(mouse_pos.x ,mouse_pos.y - 80.0f,80.0f,20.0f),"Wrong answer!!! Check again!!");
 					
@@ -178,6 +215,7 @@ public class PowerController : MonoBehaviour {
 				//********************************************************************/
 				}
 				triggered = false;
+				pointed = false;
 			}	
 		}
 	}
@@ -248,22 +286,7 @@ public class PowerController : MonoBehaviour {
 		input[order[3]] = rand_1;
 		input[order[4]] = rand_2;
 		input[order[5]] = rand_symbol;
-		
-		/*
-		for(int i =0; i < 10; i++){
-		
-			int m = Random.Range(0,5);
-			int n = Random.Range(0,5);
-			
-			if(m == n){
-				i--;
-				continue;
-			}	
-			
-			string.
-		}
-		
-		*/
+
 	}
 	
 	void GetEquation(){
@@ -333,4 +356,7 @@ public class PowerController : MonoBehaviour {
 		
 	}
 	
+	public bool GetOpened(){
+		return opened;
+	}
 }
