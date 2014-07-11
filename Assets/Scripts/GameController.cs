@@ -96,7 +96,15 @@ public class GameController : MonoBehaviour {
 	void OnGUI(){
 		
 		string coin_str = coin_num.ToString();
+<<<<<<< HEAD
 		GUI.Label(new Rect(500.0f,10.0f,100.0f,50.0f),coin_str);
+=======
+<<<<<<< HEAD
+		GUI.Label(new Rect(500.0f,10.0f,100.0f,50.0f),coin_str);
+=======
+		GUI.Label(new Rect(500.0f,10.0f,30.0f,30.0f),coin_str);
+>>>>>>> dac4a523c9afbd0e8eafa05990a587f49290ff6a
+>>>>>>> c1393aae152be81d0421ed101249f3c2210c4e77
 		GUI.Label(new Rect(460.0f,10.0f,coin_tex.width,coin_tex.height),coin_tex);
 	// Health bar and Spirit bar
 		int player_hp = playerController.GetHealth();
