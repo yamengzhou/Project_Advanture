@@ -13,8 +13,8 @@ public class DestroyByTouch : MonoBehaviour {
 	
 	}
 	
-	void OnTriggerEnter(Collider collider){
-		if(collider.tag == "Bullet"){
+	void OnCollisionEnter(Collision collision){
+		if(collision.collider.tag == "Bullet" ||collision.collider.tag == "Ball"){
 			Destroy(gameObject);
 		}
 	

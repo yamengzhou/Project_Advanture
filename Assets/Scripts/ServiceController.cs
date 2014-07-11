@@ -5,10 +5,13 @@ public class ServiceController : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake(){
-		senseix.initSenseix("6d483ee4ac7c4aafff9404f8cac7d567bd54d42a608b36b013d681ff2dd47dae");
-		//senseix.coachSignUp("2523261011@qq.com","chris2","password.com");
-		//senseix.coachUidPush();
-		senseix.coachLogin ("2523261011@qq.com", "password.com");
+		//senseix.initSenseix("040069fda83c7dbc41bafaece3437b188da5003980547b33091a70f25c5fbf3c");
+		senseix.initSenseix("394b98dd815c87b627e78d4f18158f522a79228a65b4595c4e3037eb628efeff");
+		//senseix.coachSignUp("252326101@qq.com","yameng","abcd1234");
+		senseix.coachUidPush();
+		senseix.coachLogin ("252326101@qq.com", "abcd1234");
+		//senseix.createPlayer("player_1");
+		
 		ArrayList users = senseix.getPlayerA();
 		//senseix.getPlayer();
 		int userID = ((heavyUser)users[0]).id;
